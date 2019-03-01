@@ -4,6 +4,7 @@
   "dependencies": {
     "selenium-webdriver": "^3.6.0",
     "chromedriver": "^2.46.0",
-    "mocha": "^6.0.2"
+    "mocha": "^6.0.2",
+    "chai": "^4.2.0"
   }
 }

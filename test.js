@@ -1,4 +1,5 @@
 require("mocha")
+require("chai")
 var webdriver = require('selenium-webdriver');
 var test = require('selenium-webdriver/testing');
 
