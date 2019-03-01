@@ -1,0 +1,9 @@
+{
+  "name": "JS-Selenium-Cookiecutter",
+  "version": "1.0.0",
+  "dependencies": {
+    "selenium-webdriver": "^3.6.0",
+    "chromedriver": "^2.46.0",
+    "mocha": "^6.0.2"
+  }
+}
