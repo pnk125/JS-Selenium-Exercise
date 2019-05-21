@@ -2,6 +2,8 @@
 
 Setup: 
 `npm install`
+`npm install mocha -g`
+`brew cask install chromedriver`
 
 To Run:
 `mocha`
