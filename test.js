@@ -1,30 +1,22 @@
 require("mocha");
-let webdriver = require("selenium-webdriver");
-let By = webdriver.By;
-let driver;
+const webdriver = require("selenium-webdriver");
 const chai = require("chai");
-const chaiAsPromised = require("chai-as-promised");
-chai.use(chaiAsPromised);
 const assert = chai.assert;
 
 describe('JS-Selenium-Exercise', function () {
     describe('Test1', function () {
-
-        before(async function() {
-            driver = await new webdriver.Builder()
-                .forBrowser('chrome')
-                .build();
-        });
-        after(async function() {
-            await driver.quit();
-        });
         it('should follow the instructions', async function () {
-            this.timeout(10000);
-
-            // WRITE CODE BELOW:
+            this.timeout(20000);
+            const driver = new webdriver.Builder()
+                .forBrowser('firefox')
+                .build();
 
             // Open google.com
+            await driver.get("http://www.google.com");
 
+            // Example assertion:
+            let title = await driver.getTitle();
+            assert.equal(title, "Google");
 
             // Check that the google logo is visible
 
@@ -47,6 +39,8 @@ describe('JS-Selenium-Exercise', function () {
 
             // Store all of the links on this page into a list and then print them all to system.out
 
+
+            await driver.quit();
         })
     })
 });

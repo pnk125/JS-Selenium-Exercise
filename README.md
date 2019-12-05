@@ -1,18 +1,15 @@
-# JS-Selenium-Exercise
+# QA Engineer Exercise
 
+## Instructions ##
 Setup: 
 `npm install`
-`npm install mocha -g`
-`brew cask install chromedriver`
 
 To Run:
 `mocha`
 
-Note: Creating page objects isn't a requirement and may take more time than we have. Feel free to discuss at the end how you would implement page objects.
-
-In any way you would like. Write code to perform as many of the following actions that you can:
-
-Open google.com  
+### Steps to test ###
+Open google.com (done)  
+Check the title equals "Google" (done)  
 Check that the google logo is visible  
 Check there are two options present: "Google Search" and "I'm Feeling Lucky"  
 Enter text "PayPal" and click "I'm Feeling Lucky"  
