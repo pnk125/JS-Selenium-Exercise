@@ -1,5 +1,8 @@
 require("mocha");
 const webdriver = require("selenium-webdriver");
+const {By, until}= require('selenium-webdriver');
+const { expect } = require('chai');
+
 const chai = require("chai");
 const assert = chai.assert;
 
@@ -19,24 +22,24 @@ describe('JS-Selenium-Exercise', function () {
             assert.equal(title, "Google");
 
             // Check that the google logo is visible
-            const googleLogo = await driver.findElement(By.xpath("//img[@id='hplogo']"));
-            expect(googleLogo.isDisplayed()).toEqual(true);
-            // driver.findElement(webdriver.By.xpath("//img[@id='hplogo']"))
+            await driver.wait(until.elementLocated(By.id('hplogo')));
+            const googleLogo = await driver.findElement(By.id('hplogo'));
+            expect((await googleLogo.isDisplayed()).valueOf()).equal(true);
 
-
+            
             // Check there are two options present: "Google Search" and "I'm Feeling Lucky"
-            const googleSearchBtn = await driver.findElement(By.xpath("//input[@name='btnK']"));
-            const imFeelingLuckyBtn = await driver.findElement(By.xpath("//span[contains(text(),'Feeling Trendy')]"));
-            expect(googleSearchBtn.isDisplayed()).toEqual(true);
-            expect(imFeelingLuckyBtn.isDisplayed()).toEqual(true);
+            const googleSearchBtn = await driver.findElement(By.xpath("//input[@id='gbqfbb']//preceding::input[1]")); //2 elements with same properties
+            const imFeelingLuckyBtn = await driver.findElement(By.id('gbqfbb'));
+            expect((await googleSearchBtn.getAttribute('value'))).equal("Google Search");
+            expect((await imFeelingLuckyBtn.getAttribute('value'))).equal("I'm Feeling Lucky");
             
             // Enter text "PayPal" and click "I'm Feeling Lucky"
             driver.findElement(By.xpath("//input[@name='q']")).sendKeys("PayPal");
-            (await driver.findElement(By.xpath("//span[contains(text(),'Feeling Trendy')]"))).click();
+            (await driver.findElement(By.id('gbqfbb'))).click();
 
             // Check the url is now "https://www.paypal.com/"
-            let currentURL = await driver.getCurrentUrl();
-            assert.equal(currentURL, "https://www.paypal.com/");
+            const currentURL2 = await driver.getCurrentUrl();
+            assert.include(currentURL2, "https://www.paypal.com/");
 
             // Click "Sitemap"
             (await driver.findElement(By.xpath("//a[text()='Sitemap']"))).click();
@@ -49,7 +52,7 @@ describe('JS-Selenium-Exercise', function () {
            
             driver.findElements(By.tagName("a")).then(function(elements){
                 elements.forEach(function (element) {
-                    element.getText().then(function(text){
+                    element.getAttribute('href').then(function(text){
                         console.log(text);
                     });
                 });
